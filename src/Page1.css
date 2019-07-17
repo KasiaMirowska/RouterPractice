@@ -1,0 +1,11 @@
+.page1 {
+    flex:1;
+    /* flex-basis: 50%; */
+    border: 1px solid black;
+}
+.results-img {
+    max-width: 50%;
+}
+ul {
+    list-style: none;
+}
