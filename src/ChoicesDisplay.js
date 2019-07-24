@@ -1,7 +1,7 @@
 import React from 'react';
 
  
-export default function Choices(props) {
+export default function ChoicesDisplay(props) {
     const selectedBreedimages = props.choices.map((dog, i)=> {
         return (
             <ul>

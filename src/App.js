@@ -1,10 +1,12 @@
 import React from 'react';
+import DogsContext from './DogsContext';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Header from './Header';
-import Page1 from './Page1';
-import Page2 from './Page2';
-import Choices from './Choices';
+import DogImages from './DogImages';
+import BreedChoicesFetcher from './BreedChoicesFetcher';
+import ChoicesDisplay from './ChoicesDisplay';
+
 
 
 export default class App extends React.Component {
@@ -16,6 +18,12 @@ export default class App extends React.Component {
 
   }
 
+  updateDogImages = (images) => {
+    this.setState({
+      dogPhotos: images,
+    })
+  }
+  
   componentDidMount() {
     const url= 'https://dog.ceo/api/breeds/image/random/10';
     
@@ -45,6 +53,12 @@ export default class App extends React.Component {
     const error = this.state.error
               ? <div className='error'>{this.state.error}</div>
               : '';
+    const contextValue = {
+      dogPhotos: this.state.dogPhotos,
+      updateDogImages: this.updateDogImages,
+    }
+
+
   return (
     <div>
       <header>
@@ -52,13 +66,14 @@ export default class App extends React.Component {
       </header>
       {error}
       <div className="App">
-        <div className='left'>
-          <Route path='/' render={() => <Page1 dogs={this.state.dogPhotos} /> } />
-          {/* <Route exact path='/chosenBreed' render={(props) => <Choices {...props} dogs={this.state.dogPhotos}/>} /> */}
-        </div>
-        <div className='right'>
-          <Route path='/' render={() => <Page2 />} />
-        </div>
+        <DogsContext.Provider value={contextValue}>
+          <div className='left'>
+            <Route path='/' component={DogImages} />
+          </div>
+          <div className='right'>
+            <Route path='/' component={BreedChoicesFetcher} />
+          </div>
+        </DogsContext.Provider>
       </div>
     </div>
   );
