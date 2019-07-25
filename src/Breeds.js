@@ -1,11 +1,14 @@
 import React from 'react';
 
 
+
 export default function Breeds(props) {
+    
     const breeds = props.dogBreeds.map((breed, i) => {
+        console.log(breed)
         return (
            <option value={breed} key={i}>
-               {breed}
+                    {breed}
            </option>
         )
     })

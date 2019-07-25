@@ -1,7 +1,7 @@
 import React from 'react';
 import DogsContext from './DogsContext';
 import Breeds from './Breeds';
-import ChoicesDisplay from './ChoicesDisplay';
+
 
 
 export default class Page1 extends React.Component {
@@ -71,19 +71,11 @@ export default class Page1 extends React.Component {
 
         const dogBreeds = Object.keys(this.state.breeds)
 
-        const pickedDogPhotos = this.state.dogPhotos ?
-                                <ChoicesDisplay choices={this.state.dogPhotos} />
-                                : <div className='placeholder'>Select a breed from above</div>
-       
-    
-        
         
         return (
             <div className='page2'>
                 {error}
-                
                 <Breeds dogBreeds={dogBreeds} dogChoice={(selection) => this.setSelected(selection)}/>
-                {pickedDogPhotos}
             </div>
         )
     }
