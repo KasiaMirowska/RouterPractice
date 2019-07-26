@@ -1,11 +1,11 @@
 import React from 'react';
-import DogsContext from './DogsContext';
+import AppContext from './AppContext';
 import Breeds from './Breeds';
 
 
 
 export default class Page1 extends React.Component {
-    static contextType = DogsContext;
+    static contextType = AppContext;
     constructor(props){
         super(props);
         this.state = {
@@ -38,7 +38,6 @@ export default class Page1 extends React.Component {
     }
     
     setSelected(selection) {
-        console.log(selection)
         this.setState({
             selected: selection  
         })
@@ -64,7 +63,7 @@ export default class Page1 extends React.Component {
 }
 
     render(){
-        console.log(this.context)
+        console.log(this.props)
         const error = this.state.error
         ? <div className='error'>{this.state.error}</div>
         : '';
@@ -74,7 +73,8 @@ export default class Page1 extends React.Component {
         
         return (
             <div className='page2'>
-                {error}
+                <button onClick={() => this.props.history.goBack()}>Back</button>
+                {/* //history not working the way it should/going to far back */}
                 <Breeds dogBreeds={dogBreeds} dogChoice={(selection) => this.setSelected(selection)}/>
             </div>
         )

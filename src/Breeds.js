@@ -5,7 +5,6 @@ import React from 'react';
 export default function Breeds(props) {
     
     const breeds = props.dogBreeds.map((breed, i) => {
-        console.log(breed)
         return (
            <option value={breed} key={i}>
                     {breed}
@@ -24,6 +23,7 @@ export default function Breeds(props) {
     
     return (
         <div>
+            <button onClick={() => this.props.history.goBack()}>Back</button>
             <form>
                 <label htmlFor='breed'>Select a breed: </label>
                 <select 
